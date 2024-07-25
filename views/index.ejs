@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Video Downloader</title>
+    <style>
+        #videoContainer {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+        video, img, audio {
+            width: 100%;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .downloadButton {
+            display: block;
+            margin: 10px auto;
+        }
+        #inputContainer {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        #urlInput {
+            width: 80%;
+            max-width: 500px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="inputContainer">
+    <input type="text" id="urlInput" placeholder="Nhập URL video TikTok ở đây">
+    <button id="loadButton">Tải Video</button>
+</div>
+
+<div id="videoContainer">
+    <img id="thumbnail" style="display:none;">
+    <div id="mediaList"></div>
+</div>
+
+<div id="infoContainer" style="text-align: center; margin-top: 20px;">
+    <h3>Thông tin Video</h3>
+    <p id="videoTitle"></p>
+    <p id="videoDuration"></p>
+</div>
+
+<script>
+    document.getElementById('loadButton').addEventListener('click', async () => {
+        const videoUrl = document.getElementById('urlInput').value.trim();
+        if (!videoUrl) {
+            alert('Vui lòng nhập URL video TikTok.');
+            return;
+        }
+
+        const fetchUrl = `/download?url=${encodeURIComponent(videoUrl)}`;
+
+        try {
+            const response = await fetch(fetchUrl);
+            if (!response.ok) throw new Error('Network response was not ok');
+
+            const data = await response.json();
+
+            document.getElementById('thumbnail').src = data.thumbnail;
+            document.getElementById('thumbnail').style.display = 'block';
+
+            document.getElementById('videoTitle').textContent = `Tiêu đề: ${data.title}`;
+            document.getElementById('videoDuration').textContent = `Thời lượng: ${data.duration}`;
+
+            const mediaList = document.getElementById('mediaList');
+            mediaList.innerHTML = '';
+
+            data.medias.forEach(media => {
+                const mediaElement = document.createElement(media.type === 'mp4' ? 'video' : 'audio');
+                mediaElement.src = media.url;
+                mediaElement.controls = true;
+                mediaElement.style.display = 'block';
+                mediaList.appendChild(mediaElement);
+
+                const downloadButton = document.createElement('button');
+                downloadButton.className = 'downloadButton';
+                downloadButton.textContent = `Tải ${media.quality.toUpperCase()} (${media.formattedSize})`;
+                downloadButton.onclick = () => {
+                    const link = document.createElement('a');
+                    link.href = media.url;
+                    link.download = `${data.title}_${media.quality}.${media.type}`;
+                    link.click();
+                };
+                mediaList.appendChild(downloadButton);
+            });
+        } catch (error) {
+            console.error('Error fetching the video:', error);
+            alert('Lỗi khi tải video. Vui lòng kiểm tra URL.');
+        }
+    });
+</script>
+</body>
+</html>
