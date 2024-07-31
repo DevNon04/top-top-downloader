@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const fs = require('fs');
 const glob = require('glob');
-
+const cors = require('cors');
 // Config đa ngôn ngữ
 const i18n = require("i18n");
 i18n.configure({
@@ -129,7 +129,7 @@ app.use(i18n.init);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.use(cors()); // Cho phép mọi nguồn gốc
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
