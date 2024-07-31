@@ -142,7 +142,7 @@ app.use('/users', usersRouter);
 
 
 // Config window start
-// const language_dict = {};
+const language_dict = {};
 // glob.sync('./language/*.json').forEach(function (file) {
 //     let dash = file.split("\\");
 //     if (dash.length == 2) {
