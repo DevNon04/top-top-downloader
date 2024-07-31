@@ -61,10 +61,72 @@
             --z-fixed: 100
         }
 
+        .input-container {
+            position: relative;
+            width: 65%;
+        }
+
+        .container-input-btn {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btnDownload-from {
+            margin-bottom: 10px;
+            border: none;
+            margin-right: 20px;
+            padding: 10px;
+            width: 20%;
+            background: black;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .btnPaste-from {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #d0d9de;
+            border-radius: 5px;
+        }
+
+        .container-btn-from {
+            margin-top: 20px;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 65px;
+        }
+
+        .container-content-information {
+            display: flex;
+        }
+
+        .title-video {
+            margin: 0;
+            width: 365px;
+        }
+
+        .image-video {
+            width: 20%;
+            display: none;
+            border-radius: 8px;
+        }
+
         @media screen and (min-width: 1024px) {
             :root {
                 --normal-font-size: 1rem
             }
+
         }
 
         * {
@@ -149,47 +211,6 @@
             opacity: 0
         }
 
-        .content-image {
-            display: flex;
-            margin-top: 30px
-        }
-
-        .container-container-form {
-            width: 65%;
-            display: flex;
-            margin: 0 auto
-        }
-
-        .container-form {
-            width: 80%;
-            display: flex;
-            padding-top: 25px;
-            justify-content: center
-        }
-
-        .container-form, .container-result {
-            background: #fff;
-            border-radius: 5px;
-            box-shadow: 3px 5px 15px rgba(0, 0, 0, .12)
-        }
-
-        .container-result {
-            width: 40%;
-            margin-left: 20px
-        }
-
-        .button {
-            position: relative;
-            padding: 12px 18px;
-            background: #242424;
-            border: none;
-            outline: none;
-            border-radius: 3px;
-            cursor: pointer;
-            margin-top: 20px;
-            width: 40%
-        }
-
         @media screen and (max-width: 1118px) {
             .nav__menu {
                 position: absolute;
@@ -212,42 +233,53 @@
                 padding-top: 1rem
             }
 
-            .container-container-form {
-                width: 80%
+        }
+
+        @media screen and (max-width: 1024px) {
+            .input-container {
+                width: 100%;
             }
+
         }
 
         @media screen and (max-width: 900px) {
-            .container-container-form {
-                width: 90%
+            .container-input-btn {
+                width: 120%;
+            }
+
+            .video-container {
+                flex-direction: column;
+            }
+
+            .container-content-information {
+                margin-bottom: 50px;
+                width: 100%;
+            }
+
+            .media-list {
+                width: 100%;
             }
         }
 
         @media screen and (max-width: 750px) {
-            .container-container-form {
-                display: block
+            .container-btn-from {
+                flex-direction: column;
             }
 
-            .container-form {
+            .btnDownload-from {
+                margin-right: 0;
                 width: 100%;
-                min-height: 200px
             }
 
-            .container-result {
+            .btnPaste-from {
                 width: 100%;
-                margin-top: 20px;
-                margin-left: 0
             }
 
-            .content-image {
-                display: block;
-                margin-top: 20px
+            .title-video {
+                width: 230px;
             }
-
-            .content-chill {
-                margin-left: 0;
-                margin-bottom: 10px;
-                margin-top: 10px
+            .image-video{
+                width: 30%;
             }
         }
 
@@ -339,6 +371,14 @@
             .button {
                 font-size: 10px;
                 width: 120px
+            }
+        }
+        @media screen and (max-width: 390px) {
+            .image-video{
+                width: 40%;
+            }
+            .title-video{
+                width: 190px;
             }
         }
 
@@ -1579,9 +1619,6 @@
             border-radius: 5px;
         }
 
-        .input-container {
-            position: relative;
-        }
 
         .input-container input, .form button {
             outline: none;
@@ -1600,6 +1637,7 @@
             padding-right: 2rem;
             place-content: center;
         }
+
         .dots-container {
             display: flex;
             align-items: center;
@@ -1718,24 +1756,25 @@
 <section style="width: 80%;margin: auto;line-height: 30px;">
     <section id="header-content">
         <div id="title-website" style="margin-top: 180px;display: flex;flex-direction: column;align-items: center;">
-            <h1 style="text-align: center;"><%= __('h1-header-content') %></h1>
-            <p style="text-align: center;width: 69%;"><%= __('p-header-content') %>
+            <h1 style="text-align: center;font-size: 22px"><%= __('h1-header-content') %></h1>
+            <p style="text-align: center;width: 120%;"><%= __('p-header-content') %>
                 <strong><%= __('strong-header-content') %></strong><%= __('p1.2-header-content') %></p>
         </div>
         <div id="inputContainer" style="margin-top: 20px;display: flex;flex-direction: column;align-items: center;">
-            <div style="position: relative;display: flex;justify-content: center;width: 100%;">
-                <div class="input-container" style="width: 65%;">
+            <div class="container-input-btn">
+                <div class="input-container">
                     <input style="width: 100%;padding: 1rem 1rem; border-radius: 5px;outline:none;border: 1px solid #e7e7e7;box-shadow: 0 0 15px rgb(0 0 0 / 5%);"
                            type="text" id="urlInput" placeholder="<%= __('placeholder-header-content') %>">
                     <span>
-            <button id="clear"
-                    style="border: none;font-size: 13px;padding: 8px;border-radius: 5px;color: white;background: red;width: 130%;"><%= __('btn-clear-header-content') %></button>
-          </span>
+                        <button id="clear"
+                                style="border: none;font-size: 13px;padding: 8px;border-radius: 5px;color: white;background: #8dc572;width: 130%;"><%= __('btn-clear-header-content') %></button>
+                    </span>
                 </div>
             </div>
-            <div style="margin-top: 20px;display: flex;width: 100%;justify-content: center;align-items: center;flex-wrap: wrap;">
-                <button style=" margin-bottom: 10px;border: none;margin-right: 20px;padding: 10px;width: 12%;background: black;color: white; border-radius: 5px;" id="loadButton"><%= __('btn-download-header-content') %></button>
-                <button style="margin-bottom: 10px;padding: 10px;border: 1px solid #d0d9de;border-radius: 5px;"
+            <div class="container-btn-from">
+                <button style="" class="btnDownload-from"
+                        id="loadButton"><%= __('btn-download-header-content') %></button>
+                <button style="" class="btnPaste-from"
                         id="paste">
                     <%= __('btn-paste-header-content') %>
                 </button>
@@ -1748,17 +1787,16 @@
             <div class="dot"></div>
             <div class="dot"></div>
         </section>
-        <div id="videoContainer"
-             style="display: flex;flex-wrap: wrap;justify-content: center;align-items: center;margin-top: 65px;">
-            <div style="display: flex">
-                <img id="thumbnail" style="width: 20%;display:none;border-radius: 8px;">
+        <div id="videoContainer" style="" class="video-container">
+            <div style="" class="container-content-information">
+                <img id="thumbnail" class="image-video" style="">
                 <div id="infoContainer" style="margin-left: 20px;">
                     <h2 id="title" style="margin: 0;"></h2>
-                    <p id="videoTitle" style="margin: 0;width: 365px;"></p>
+                    <p id="videoTitle" class="title-video" style=""></p>
                     <p id="videoDuration" style="margin:0"></p>
                 </div>
             </div>
-            <div id="mediaList"></div>
+            <div class="media-list" id="mediaList"></div>
         </div>
     </section>
     <section>
@@ -2004,7 +2042,7 @@
             document.getElementById('thumbnail').src = data.thumbnail;
             document.getElementById('thumbnail').style.display = 'block';
 
-            document.getElementById('title').textContent = `<%=__('title-video-information')%>`;
+            document.getElementById('title').textContent = `<%= __('title-video-information') %>`;
             document.getElementById('videoTitle').textContent = `Title: ${data.title}`;
             document.getElementById('videoDuration').textContent = `Time: ${data.duration}`;
 
@@ -2024,7 +2062,7 @@
         } catch (error) {
             console.error('Error fetching the video:', error);
             alert('Lỗi khi tải video. Vui lòng kiểm tra URL.');
-        }finally {
+        } finally {
             loading.style.display = "none"
         }
     });
